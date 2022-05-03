@@ -23,7 +23,7 @@ import static steps.ui.StepsUI.PAGE_IS_OPENED;
 
 public class ProfileIconNavigationTests extends TestSetup {
 
-    @Test(groups = {"regression","profile","web"}, priority = 3)
+    @Test(groups = {REGRESSION,PROFILE})
     @Story("TAF-02")
     @Description("Test ability to open Profile page for logged user")
     public void userAbleToOpenProfilePage() {

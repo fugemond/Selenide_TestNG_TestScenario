@@ -24,7 +24,7 @@ import static steps.ui.StepsUI.PAGE_IS_OPENED;
 
 public class LoginWithValidCredTests extends TestSetup {
 
-    @Test(groups = {"regression","login","web"}, priority = 2)
+    @Test(groups = {REGRESSION,LOGIN})
     @Story("TAF-01")
     @Description("Test login into site using valid credentials")
     public void loginWithValidCred() {

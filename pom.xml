@@ -21,6 +21,8 @@
         <reflections.version>0.10.2</reflections.version>
         <guava.version>31.1-jre</guava.version>
         <hamcrest.version>1.3</hamcrest.version>
+        <javassist.version>3.12.1.GA</javassist.version>
+        <surefire.veriosn>2.19.1</surefire.veriosn>
         <suiteXml.file>src/test/resources/suites/testng.xml</suiteXml.file>
     </properties>
 
@@ -73,18 +75,11 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
         </dependency>
-        <!-- ALLURE SELENIDE
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-selenide</artifactId>
-            <version>${allure.version}</version>
-        </dependency>
-        -->
         <!-- GUAVA -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>31.1-jre</version>
+            <version>${guava.version}</version>
         </dependency>
         <!-- HAMCREST -->
         <dependency>
@@ -93,10 +88,11 @@
             <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
+        <!--JAVASSIST-->
         <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
-            <version>3.12.1.GA</version>
+            <version>${javassist.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -107,14 +103,14 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>11</source> <!--For JAVA 8 use 1.8-->
-                    <target>11</target> <!--For JAVA 8 use 1.8-->
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.source}</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>${surefire.veriosn}</version>
                 <configuration>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -135,13 +131,13 @@
             </plugin>
         </plugins>
     </build>
-   <reporting>
-       <plugins>
-           <plugin>
-               <groupId>io.qameta.allure</groupId>
-               <artifactId>allure-maven</artifactId>
-               <version>${allure.version}</version>
-           </plugin>
-       </plugins>
-   </reporting>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.version}</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
