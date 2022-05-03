@@ -1,15 +1,12 @@
 package site.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import core.BasePage;
 import core.annotations.Name;
 import core.interfaces.PageElement;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
 
 @Name("Main page")
 public class MainPage extends BasePage {

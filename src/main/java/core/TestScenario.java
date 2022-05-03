@@ -1,5 +1,7 @@
 package core;
 
+import site.pages.BasePage;
+
 public final class TestScenario {
 
     private static final TestScenario scenario = new TestScenario();

@@ -1,7 +1,6 @@
 package site.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import core.BasePage;
 import core.annotations.Name;
 import core.interfaces.PageElement;
 import lombok.AllArgsConstructor;

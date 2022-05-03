@@ -21,7 +21,7 @@
         <reflections.version>0.10.2</reflections.version>
         <guava.version>31.1-jre</guava.version>
         <hamcrest.version>1.3</hamcrest.version>
-        <xmlSuite.file>src/test/resources/suites/testng.xml</xmlSuite.file>
+        <suiteXml.file>src/test/resources/suites/testng.xml</suiteXml.file>
     </properties>
 
     <dependencies>
@@ -121,7 +121,7 @@
                     </argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>
-                            ${xmlSuite.file}
+                            ${suiteXml.file}
                         </suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>

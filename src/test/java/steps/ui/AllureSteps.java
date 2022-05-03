@@ -2,11 +2,9 @@ package steps.ui;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import core.interfaces.PageElement;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
-import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static core.TestScenario.getTestScenario;
 import static org.hamcrest.MatcherAssert.assertThat;

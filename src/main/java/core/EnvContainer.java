@@ -2,6 +2,7 @@ package core;
 
 import core.annotations.Name;
 import lombok.SneakyThrows;
+import site.pages.BasePage;
 import utility.AnnotationScanner;
 
 import java.util.Arrays;

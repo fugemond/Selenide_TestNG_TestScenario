@@ -3,6 +3,7 @@ package core;
 import com.codeborne.selenide.Selenide;
 import com.google.common.collect.Maps;
 import lombok.SneakyThrows;
+import site.pages.BasePage;
 
 import java.lang.reflect.Constructor;
 import java.util.Map;

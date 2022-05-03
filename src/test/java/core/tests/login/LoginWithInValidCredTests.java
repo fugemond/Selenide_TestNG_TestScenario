@@ -22,7 +22,7 @@ public class LoginWithInValidCredTests extends TestSetup {
 
     static final String INCORRECT_CRED_ERROR_MESSAGE = "Incorrect username or password.";
 
-    @Test(groups = {"regression", "login", "web"})
+    @Test(groups = {REGRESSION, LOGIN})
     @Story("TAF-01")
     @Description("Test login into site using invalid username")
     public void loginWithIncorrectLogin() {
@@ -37,7 +37,7 @@ public class LoginWithInValidCredTests extends TestSetup {
         ASSERT_THAT_CURRENT_URL_IS("https://github.com/session");
     }
 
-    @Test(groups = {"regression", "login", "web"}, priority = 2)
+    @Test(groups = {REGRESSION, LOGIN})
     @Story("TAF-01")
     @Description("Test login into site using invalid password")
     public void loginWithIncorrectPassword() {
