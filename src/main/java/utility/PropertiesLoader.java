@@ -9,35 +9,47 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
+import static java.util.Objects.*;
+
 public class PropertiesLoader {
 
-    private static final String PROPERTIES_FILE = "/application.properties";
-    private static final Properties PROPERTIES = getPropertiesInstance();
+    private static final String PROPERTIES_FILE = "/properties/application.properties";
+    private static final String TEST_DATA_FILE = "/properties/testdata.properties";
+    private static final Properties PROPERTIES = getPropertiesInstance(PROPERTIES_FILE);
+    private static final Properties TEST_DATA_PROPERTIES = getPropertiesInstance(TEST_DATA_FILE);
+
+    private PropertiesLoader() {
+        throw new IllegalStateException("Utility class");
+    }
 
     @SneakyThrows(IOException.class)
-    private static Properties getPropertiesInstance() {
+    private static Properties getPropertiesInstance(String propertiesFile) {
         Properties instance = new Properties();
         try (
-                InputStream resourceStream = PropertiesLoader.class.getResourceAsStream(PROPERTIES_FILE);
+                InputStream resourceStream = PropertiesLoader.class.getResourceAsStream(propertiesFile);
                 InputStreamReader inputStream = new InputStreamReader(resourceStream, StandardCharsets.UTF_8)
         ) {
             instance.load(inputStream);
         }
         return instance;
     }
-    public static String loadSystemPropertyOrDefault(String propertyName, String defaultValue) {
-        String propValue = System.getProperty(propertyName);
-        return propValue != null ? propValue : defaultValue;
-    }
-    public static String tryLoadProperty(String propertyName) {
-        String value = null;
-        if (!Strings.isNullOrEmpty(propertyName)) {
-            String systemProperty = loadSystemPropertyOrDefault(propertyName, propertyName);
-            if (!propertyName.equals(systemProperty)) {
-                return systemProperty;
-            }
-                value = PROPERTIES.getProperty(propertyName);
+
+    @SneakyThrows
+    public static String tryGetPropertyOrDefault(String propertyName) {
+        if (Strings.isNullOrEmpty(propertyName)) {
+            throw new IllegalArgumentException("Provided property should not be Empty or Null");
         }
-        return value;
+
+        String systemProperty = System.getProperty(propertyName);
+        String testDataProperty = TEST_DATA_PROPERTIES.getProperty(propertyName);
+        String applicationProperty = PROPERTIES.getProperty(propertyName);
+
+        if (systemProperty != null) {
+            return systemProperty;
+        }
+        if (testDataProperty != null) {
+            return testDataProperty;
+        }
+        return requireNonNullElse(applicationProperty, propertyName);
     }
 }

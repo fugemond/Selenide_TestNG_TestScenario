@@ -3,13 +3,14 @@ package core;
 import com.codeborne.selenide.Selenide;
 import com.google.common.collect.Maps;
 import lombok.SneakyThrows;
+import site.pages.BasePage;
 
 import java.lang.reflect.Constructor;
 import java.util.Map;
 
 public class PagesContainer {
 
-    private Map<String, BasePage> pages;
+    private final Map<String, BasePage> pages;
 
     private BasePage currentPage;
 
@@ -51,7 +52,7 @@ public class PagesContainer {
         }
         Constructor<? extends BasePage> constructor = page.getDeclaredConstructor();
         constructor.setAccessible(true);
-        BasePage p = page.newInstance();
+        BasePage p = page.getDeclaredConstructor().newInstance();
         pages.put(pageName, p);
     }
 
