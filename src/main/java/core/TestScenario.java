@@ -2,9 +2,9 @@ package core;
 
 public final class TestScenario {
 
-    private static TestScenario scenario = new TestScenario();
+    private static final TestScenario scenario = new TestScenario();
 
-    private static ThreadLocal<EnvContainer> environment = new ThreadLocal<>();
+    private static final ThreadLocal<EnvContainer> environment = new ThreadLocal<>();
 
     public static TestScenario getTestScenario() {
         return scenario;
@@ -24,6 +24,10 @@ public final class TestScenario {
 
     public EnvContainer getEnvironment() {
         return environment.get();
+    }
+
+    public void removeEnvironment() {
+        environment.remove();
     }
 
     public void setEnvironment(EnvContainer coreEnvironment) {

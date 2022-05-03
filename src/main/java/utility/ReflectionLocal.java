@@ -1,5 +1,7 @@
 package utility;
 
+import core.exceptions.ExtractFieldValueException;
+
 import java.lang.reflect.Field;
 
 public class ReflectionLocal {
@@ -15,7 +17,7 @@ public class ReflectionLocal {
         try {
             return field.get(owner);
         } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+            throw new ExtractFieldValueException(e);
         } finally {
             field.setAccessible(false);
         }

@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class EnvContainer {
 
-    private PagesContainer pages = new PagesContainer();
+    private final PagesContainer pages = new PagesContainer();
 
     public PagesContainer getPages() {
         return pages;
@@ -30,7 +30,7 @@ public class EnvContainer {
                     if (BasePage.class.isAssignableFrom(it)) {
                         return (Class<? extends BasePage>) it;
                     } else {
-                        throw new IllegalStateException("Class " + it.getName() + " should extends CorePage");
+                        throw new IllegalStateException("Class " + it.getName() + " should extends BasePage");
                     }
                 })
                 .forEach(clazz -> pages.put(getClassAnnotationValue(clazz), clazz));
@@ -42,6 +42,6 @@ public class EnvContainer {
                 .map(Name::value)
                 .orElseThrow(
                         () -> new AssertionError(
-                                "CorePage.Name annotation cannot be found in class " + c.getClass().getName()));
+                                "BasePage.Name annotation cannot be found in class " + c.getName()));
     }
 }

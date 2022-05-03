@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<сonfiguration monitorinterval="30" status="WARN" strict="true">
+    <Properties>
+        <Property name="filename">target/logs/logs.log</Property>
+        <Property name="logLevelPattern">%5p</Property>
+        <Property name="logPatternConsole">%d{yyyy-MM-dd HH:mm:ss} %m%n
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${logPatternConsole}"/>
+        </Console>
+        <File name="File" fileName="${filename}">
+            <PatternLayout pattern="${logPatternConsole}"/>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Root level="info" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Root>
+        <Logger name="TestLogger" level="all" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+    </Loggers>
+</сonfiguration>
