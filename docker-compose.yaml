@@ -1,0 +1,24 @@
+# docker-compose.yaml
+version: '3.8'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8081:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - /Users/romantiupin/programming/testNgAllure_Example/jenkins_compose:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
+  agent:
+   image: jenkins/ssh-agent:jdk11
+   privileged: true
+   user: root
+   container_name: agent
+   expose:
+   - 22
+   environment:
+   - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCt8UQkAAEXURf5QkVsyF6qhaoXmV1fS8pFtgxw94whvVhq0kOy3BWxZ1qRAvxNGl/xKQFSFEAAr/KQwK83TcsyECMisujjzdflE7lYEMc6RdVWqQOszDgF1FN+KIirEItoVQlZJMhKYc2szXZNscHNKrC6TZWBy9Vn75kBUpfXHNdnkN7B2zGlOA8NMvRdd+MBHDSVfUqqGEcRK9ALGnZ91l9pDpBmZo5g4rEyos8MMWEEUHSbEm9Z1H0wMOx+ofbXuVA1bYWFWHeVYSnSf+PC7UqVklnbfcqJs+99DCwzuvrc+WwFax5yYcq3jxVMNmgOadiEUhn677Z6/0zyh9tYOkrYPK8hEzQb+dgVIr4F602S1wljqvNW/3/GG5eXapepUIdpaoZ/LDqVQyNcksebK7xDS8Y4a2oMNmCTUVnq1wlQ0Jg6yIX53lbfzoiSai7amlqchw5Qub16qdq5EgRwVzqQxeHfx8SPzs8f88tE4A1ISlwyfrV6949Qdy2hvS8= romantiupin@Romans-MacBook-Pro.local
